@@ -108,3 +108,12 @@ h1 {
         background-image:linear-gradient(to bottom, #585858 0%, #1B1B1B 51%);
     }
 }
+
+.align-children-row {
+    display: flex;
+    flex-direction: row;
+    /* for horizontal aligning of child divs */
+    justify-content: center;
+    /* for vertical aligning */
+    align-items: center;
+}
