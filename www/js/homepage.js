@@ -7,7 +7,7 @@ function cardsHomePageSetUp(switchPage){
 
 
     $('#groupes').on('touchstart click', function (){
-        alert("Ouvrir page groupes");
+        switchPage(Pages.Groupe);
     })
 
 
