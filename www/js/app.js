@@ -7,7 +7,7 @@ const Pages = {
 $(document).ready(function() {
     const $page = $('#page-content');
 
-    switchPage(Pages.Agenda);
+    switchPage(Pages.Login);
 
     function switchPage(pageType) {
         console.log("on switch vers" + pageType.toString());
@@ -18,4 +18,8 @@ $(document).ready(function() {
             case Pages.Agenda : renderAgendaList($page, switchPage); break;
         }
     }
+
+    $('#navgohome').on('touchstart click', function (){
+        switchPage(Pages.Home);
+    })
 })

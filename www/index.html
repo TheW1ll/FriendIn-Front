@@ -33,7 +33,8 @@
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
         <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: https://ssl.gstatic.com 'unsafe-eval';
-        connect-src 'self' data: localhost:*; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+        connect-src 'self' data: localhost:*; style-src 'self' https://fonts.googleapis.com/ 'unsafe-inline'; media-src *; img-src 'self' data: content:;
+        font-src 'self' https://fonts.gstatic.com/ ; style-src-elem 'self' https://cdnjs.cloudflare.com https://fonts.googleapis.com/; " >
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
@@ -45,6 +46,7 @@
     <nav>
         <div class="nav-wrapper teal">
             <a href="#" class="brand-logo">OnlyFriendsIn</a>
+            <i class="material-icons right waves-effect" id="navgohome">home</i>
         </div>
     </nav>
     <div id="page-content">
