@@ -5,12 +5,13 @@ function renderHomePage($page, switchPage) {
 
 function cardsHomePageSetUp(switchPage){
 
+
     $('#groupes').on('touchstart click', function (){
         alert("Ouvrir page groupes");
     })
 
 
     $('#agenda').on('touchstart click', function (){
-        alert("Ouvrir page agenda")
+        switchPage(Pages.Agenda);
     })
 }

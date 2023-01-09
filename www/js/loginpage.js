@@ -15,7 +15,7 @@ function buttonSetUp(switchPage){
         console.log(request);
         const response = fetch(request)
             .then((data) => {
-                //TODO
+
             })
             .then((json) => {
                 console.log(json);
