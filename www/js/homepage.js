@@ -1,4 +1,6 @@
-function renderHomePage($page, switchPage) {
+import {Pages} from "./app.js";
+
+export function renderHomePage($page, switchPage) {
     $page.empty();
     $page.load("./views/homepage.html", () => cardsHomePageSetUp(switchPage));
 }

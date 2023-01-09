@@ -1,21 +1,27 @@
+import {Pages} from "./app.js";
 
 const Events = [
     {
-        name: "event 1",
-        date: new Date(Date.now())
+        name: "Restaurant",
+        date: new Date(Date.now()),
+        dateFin : new Date(Date.now() + 3*60*60*1000)
     },
     {
-        name: "event 2",
-        date: new Date(Date.now())
+        name: "Cinéma",
+        date: new Date(Date.now() + 24*60*60*1000),
+        dateFin : new Date(Date.now() + 27*60*60*1000)
     }
 ];
 
-function renderAgendaList($page, switchPage) {
+export function renderAgendaList($page, switchPage) {
     $page.empty();
-    $page.load("./views/agendalist.html",() => agendaListSetUp(switchPage));
+    $page.load("./views/agenda.html",() => agendaListSetUp(switchPage));
 }
 
 function agendaListSetUp(switchPage){
+    //on met en place les tabs
+    var el = document.querySelector('.tabs');
+    M.Tabs.init(el, {});
     //on charge le modèle de ligne, puis on le supprime de l'html
     var $eventRow = $("#eventrow");
     const rowModel = $eventRow.clone();
@@ -25,8 +31,23 @@ function agendaListSetUp(switchPage){
         var $newRow = rowModel.clone()
         var $list = $("#eventlist");
 
-        $newRow.find("#name").text(event.name);
-        $newRow.find("#date").text(event.date.toDateString());
+        $newRow.find("#nameEventAgenda").text(event.name);
+        $newRow.find("#dateEventAgenda").text(event.date.toDateString());
         $list.append($newRow);
     })
+
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        contentHeight: 600,
+        events: Events.map((event) => {
+            event = {
+                "title": event.name,
+                "start": event.date,
+                "end": event.dateFin
+            };
+            return event;
+        })
+    });
+    calendar.render();
 }

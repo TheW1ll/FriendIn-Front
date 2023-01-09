@@ -117,3 +117,16 @@ h1 {
     /* for vertical aligning */
     align-items: center;
 }
+
+.weekdays {
+    margin: 0;
+    padding: 10px 0;
+    background-color:#ddd;
+}
+
+.weekdays li {
+    display: inline-block;
+    width: 13.6%;
+    color: #666;
+    text-align: center;
+}

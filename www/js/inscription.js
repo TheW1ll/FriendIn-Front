@@ -1,5 +1,6 @@
+import {Pages} from "./app.js";
 
-function renderInscriptionPage($page, switchPage) {
+export function renderInscriptionPage($page, switchPage) {
     $page.empty();
     $page.load("./views/inscription.html",() => inscriptionSetUp(switchPage));
 }

@@ -1,5 +1,6 @@
+import {Pages} from "./app.js";
 
-function renderLoginPage($page, switchPage) {
+export function renderLoginPage($page, switchPage) {
     $page.empty();
     $page.load("./views/loginpage.html",() => buttonSetUp(switchPage));
 }
