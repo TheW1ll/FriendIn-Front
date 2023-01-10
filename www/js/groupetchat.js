@@ -1,3 +1,4 @@
+import {Pages} from "./app.js";
 
 const Tchats = [
     {
@@ -26,7 +27,7 @@ const Tchats = [
     }
 ];
 
-function renderGroupeTchatList($page, switchPage) {
+export function renderGroupeTchatList($page, switchPage) {
     $page.empty();
     $page.load("./views/groupetchat.html",() => groupeTchatSetUp(switchPage));
 }

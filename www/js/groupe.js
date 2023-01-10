@@ -1,3 +1,4 @@
+import {Pages} from "./app.js";
 
 const Groupes = [
     {
@@ -8,7 +9,7 @@ const Groupes = [
     }
 ];
 
-function renderGroupeList($page, switchPage) {
+export function renderGroupeList($page, switchPage) {
     $page.empty();
     $page.load("./views/groupelist.html",() => groupeListSetUp(switchPage));
 }
@@ -19,12 +20,12 @@ function groupeListSetUp(switchPage){
     const rowModel = $groupeRow.clone();
     $groupeRow.remove();
     //on charge les groupes : pour l'instant des faux
-    Groupes.forEach((groupe) => {
+    Groupes.forEach((groupe,index) => {
         var $newRow = rowModel.clone()
         var $list = $("#groupelist");
 
         $newRow.find("#name").text(groupe.name);
-
+        //$newRow.find("#Evenements").prop(id,"#Evenements" + index)
         $('#Evenements').on('touchstart click', function (){
             switchPage(Pages.GroupeEvenements);
         })

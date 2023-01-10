@@ -1,3 +1,4 @@
+import {Pages} from "./app.js";
 
 const GroupeAmis = [
     {
@@ -8,7 +9,7 @@ const GroupeAmis = [
     }
 ];
 
-function renderGroupeAmisList($page, switchPage) {
+export function renderGroupeAmisList($page, switchPage) {
     $page.empty();
     $page.load("./views/groupeamislist.html",() => groupeAmisListSetUp(switchPage));
 }

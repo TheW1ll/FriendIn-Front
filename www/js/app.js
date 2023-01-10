@@ -3,6 +3,10 @@ import {renderHomePage} from './homepage.js';
 import {renderLoginPage} from './loginpage.js';
 import {renderInscriptionPage} from './inscription.js';
 import {renderCreateGroup} from './creategroup.js';
+import {renderGroupeList} from './groupe.js'
+import {renderGroupeEvenementsList} from './groupeevenements.js'
+import {renderGroupeAmisList} from './groupeamis.js'
+import {renderGroupeTchatList} from './groupetchat.js'
 
 export const Pages = {
     Login: Symbol("login"),
@@ -16,6 +20,7 @@ export const Pages = {
     CreateGroup: Symbol("create group"),
 }
 $(document).ready(function() {
+    console.log("le doc est ready");
     const $page = $('#page-content');
 
     switchPage(Pages.Login);

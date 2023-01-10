@@ -1,3 +1,4 @@
+import {Pages} from "./app.js";
 
 const GroupeEvents = [
     {
@@ -10,7 +11,7 @@ const GroupeEvents = [
     }
 ];
 
-function renderGroupeEvenementsList($page, switchPage) {
+export function renderGroupeEvenementsList($page, switchPage) {
     $page.empty();
     $page.load("./views/groupeevenementslist.html",() => groupeEvenementsListSetUp(switchPage));
 }
