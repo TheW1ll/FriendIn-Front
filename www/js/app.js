@@ -9,10 +9,15 @@ export const Pages = {
     Inscription: Symbol("inscription"),
     Home: Symbol("homepage"),
     Agenda: Symbol("agenda"),
+    Groupe: Symbol("groupe"),
+    GroupeEvenements: Symbol("groupeevenementslist"),
+    GroupeAmis: Symbol("groupeamislist"),
+    GroupeTchat: Symbol("groupetchatlist"),
     CreateGroup: Symbol("create group"),
 }
 $(document).ready(function() {
     const $page = $('#page-content');
+
     switchPage(Pages.Login);
 
     function switchPage(pageType) {
@@ -23,6 +28,10 @@ $(document).ready(function() {
             case Pages.Home : renderHomePage($page, switchPage); break;
             case Pages.Agenda : renderAgendaList($page, switchPage); break;
             case Pages.CreateGroup : renderCreateGroup($page, switchPage); break;
+            case Pages.Groupe : renderGroupeList($page, switchPage); break;
+            case Pages.GroupeEvenements : renderGroupeEvenementsList($page, switchPage); break;
+            case Pages.GroupeAmis : renderGroupeAmisList($page, switchPage); break;
+            case Pages.GroupeTchat : renderGroupeTchatList($page, switchPage); break;
         }
     }
 
