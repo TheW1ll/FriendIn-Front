@@ -5,7 +5,7 @@ const GroupeAmis = [
         name: "William Le Conquérant",
     },
     {
-        name: "Harold Pied de lièvre",
+        name: "Harold Godwinson",
     }
 ];
 
