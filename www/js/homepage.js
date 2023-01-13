@@ -9,7 +9,11 @@ function cardsHomePageSetUp(switchPage){
 
 
     $('#groupes').on('touchstart click', function (){
+        if (sessionStorage.getItem("logged_in") === true)
         switchPage(Pages.Groupe);
+        else {
+            alert("Vous avez besoin de log-in pour consultez la page")
+        }
     })
 
 

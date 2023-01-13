@@ -43,4 +43,15 @@ $(document).ready(function() {
     $('#navgohome').on('touchstart click', function (){
         switchPage(Pages.Home);
     })
+
+    addEventListener('storage', (event) => {
+        console.log("test")
+        if(event.key === "logged_in" && event.newValue === "true") {
+            $('#logout').removeClass('hide');
+        }
+        else if(event.key === "logged_in" && event.newValue === "false"){
+            $('#logout').addClass('hide');
+        }
+    })
+
 })
