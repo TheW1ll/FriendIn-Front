@@ -25,7 +25,7 @@ $(document).ready(function() {
     console.log("le doc est ready");
     const $page = $('#page-content');
 
-    switchPage(Pages.Home);
+    switchPage(Pages.Login);
 
     function switchPage(pageType) {
         console.log("on switch vers" + pageType.toString());
