@@ -21,6 +21,8 @@ function buttonSetUp(switchPage){
                 })
                 .then((json) => {
                     if(json==true){
+                        sessionStorage.setItem("logged_in", "true");
+                        sessionStorage.setItem("login", login);
                         switchPage(Pages.Home);
                     }
                     else{
