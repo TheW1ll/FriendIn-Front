@@ -1,16 +1,10 @@
 import {Pages} from "./app.js";
 
-const Groupes = [
-    {
-        name: "Groupe 1",
-    },
-    {
-        name: "Groupe 2",
-    }
-];
+const Groupes = [];
 
 export function renderGroupeList($page, switchPage) {
     $page.empty();
+    //Todo $groupCreated;
     $page.load("./views/groupelist.html",() => groupeListSetUp(switchPage));
 }
 
@@ -31,8 +25,11 @@ function groupeListSetUp(switchPage){
         $newRow.find("#Amis").prop("id","Amis" + index)
         $newRow.find("#Tchat").prop("id","Tchat" + index)
 
+        var options = {
+            groupId: index,
+        };
         $newRow.find('#Evenements' + index).on('touchstart click', function (){
-            switchPage(Pages.GroupeEvenements);
+            switchPage(Pages.GroupeEvenements,options);
         })
         $newRow.find('#Amis' + index).on('touchstart click', function (){
             switchPage(Pages.GroupeAmis);
