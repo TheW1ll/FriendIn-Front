@@ -38,14 +38,14 @@ function groupeListSetUp(switchPage){
 
         $list.append($newRow);
 
-        
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.fixed-action-btn');
+            var instances = M.FloatingActionButton.init(elems);
+        });
+
+        $('.fixed-action-btn').on('touchstart click', function () {
+            switchPage(Pages.CreateGroup);
+        })
+
     })
 }
-
-$(document).ready(function(){
-    $('.fixed-action-btn').floatingActionButton();
-
-    $('.fixed-action-btn').on('touchstart click', function () {
-        switchPage(pages.CreateGroup);
-    })
-});
