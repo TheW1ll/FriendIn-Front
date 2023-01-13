@@ -19,7 +19,7 @@ function groupCreationSetUp(switchPage){
         })
         .then((json) => {
             if(json==true){
-                alert("Bonjour "+ login +", vous avez bien été enregistré.");
+                alert("Le groupe"+ login +", vous avez bien été enregistré.");
                 switchPage(Pages.Login);
             }
             else{
