@@ -2,11 +2,16 @@ import {Pages} from "./app.js";
 
 export function renderCreateEvenement($page, switchPage) {
     $page.empty();
-    $page.load("./views/createevenement.html",() => groupCreationSetUp(switchPage));
+    $page.load("./views/createevenement.html",() => eventCreationSetUp(switchPage));
 }
 
-// activate datepicker
-document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.datepicker');
-    var instances = M.Datepicker.init(elems);
-});
+function eventCreationSetUp(switchPage) {
+    // activate datepicker
+    var dates = document.querySelectorAll('.datepicker');
+    M.Datepicker.init(dates);
+
+    var time = document.querySelectorAll('.timepicker');
+    M.Timepicker.init(time);
+}
+
+
