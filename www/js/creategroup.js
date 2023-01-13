@@ -6,24 +6,43 @@ export function renderCreateGroup($page, switchPage) {
 }
 
 function groupCreationSetUp(switchPage){
-    const groupName = $groupName.val();
-    const description = $description.val();
+    const $groupName = $('#groupName');
+    const $description = $('#description');
+    function submitForm() {
+        const creatorId = sessionStorage.getItem("login");
+        const groupName = $groupName.val();
+        const description = $description.val();
+
+        console.log("L'id du créateur est " + creatorId);
+
+        //TODO : changer en requête inscription puis gérer la réponse
+        const requestRoute = `http://localhost:8080/createGroup/${creatorId}/${groupName}`;
+        const request = new Request(requestRoute, {
+            method:"POST",
+            body: description,
+        })
+        console.log(request);
+        const response = fetch(request)
+            .then((data) => {
+                return data.json()
+            })
+            .then((json) => {
+                if (json.groupCreated === true) {
+                    alert("Le groupe" + groupName + ", a été enregistré.");
+                    switchPage(Pages.Groupe);
+                } else {
+                    alert("Un groupe nommé '" + groupName + "' existe déjà");
+                }
+            })
+    }
+
+    $('#create').on('touchstart click', function (){
+        submitForm();
+    })
 
 
-    //TODO : changer en requête inscription puis gérer la réponse
-    const request = 'http://localhost:8080/createUser/' + $groupName + '/' + $description;
-    console.log(request);
-    const response = fetch(request, {method:'POST'})
-        .then((data) => {
-            return data.json()
-        })
-        .then((json) => {
-            if(json==true){
-                alert("Le groupe"+ login +", vous avez bien été enregistré.");
-                switchPage(Pages.Login);
-            }
-            else{
-                alert("L'utilisateur nommé '"+ login + "' existe déjà");
-            }
-        })
+    $('form').submit(function(event) {
+        event.preventDefault();
+        submitForm();
+    });
 }

@@ -25,9 +25,9 @@ $(document).ready(function() {
     console.log("le doc est ready");
     const $page = $('#page-content');
 
-    switchPage(Pages.Home);
+    switchPage(Pages.Login);
 
-    function switchPage(pageType) {
+    function switchPage(pageType, options) {
         console.log("on switch vers" + pageType.toString());
         switch(pageType) {
             case Pages.Login : renderLoginPage($page, switchPage); break;
@@ -36,7 +36,7 @@ $(document).ready(function() {
             case Pages.Agenda : renderAgendaList($page, switchPage); break;
             case Pages.CreateGroup : renderCreateGroup($page, switchPage); break;
             case Pages.Groupe : renderGroupeList($page, switchPage); break;
-            case Pages.GroupeEvenements : renderGroupeEvenementsList($page, switchPage); break;
+            case Pages.GroupeEvenements : renderGroupeEvenementsList($page, switchPage, options.groupId); break;
             case Pages.GroupeAmis : renderGroupeAmisList($page, switchPage); break;
             case Pages.GroupeTchat : renderGroupeTchatList($page, switchPage); break;
             case Pages.CreateEvenement : renderCreateEvenement($page, switchPage); break;

@@ -11,10 +11,9 @@ function buttonSetUp(switchPage){
 
     function submitForm(){
         const login = $login.val();
-
         const password = $password.val();
         if (login!=null && password!=null){
-            const request = 'http://localhost:8080/checkLogin/' + login + '/' + password;
+            const request = `http://localhost:8080/checkLogin/${login}/${password}`;
             console.log(request);
             const response = fetch(request)
                 .then((data) => {
@@ -23,6 +22,7 @@ function buttonSetUp(switchPage){
                 .then((json) => {
                     if(json==true){
                         sessionStorage.setItem("logged_in", "true");
+                        sessionStorage.setItem("login", login);
                         switchPage(Pages.Home);
                     }
                     else{

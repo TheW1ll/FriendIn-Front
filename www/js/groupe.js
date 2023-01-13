@@ -1,16 +1,10 @@
 import {Pages} from "./app.js";
 
-const Groupes = [
-    {
-        name: "Groupe 1",
-    },
-    {
-        name: "Groupe 2",
-    }
-];
+const Groupes = [];
 
 export function renderGroupeList($page, switchPage) {
     $page.empty();
+    //Todo $groupCreated;
     $page.load("./views/groupelist.html",() => groupeListSetUp(switchPage));
 }
 
@@ -18,6 +12,8 @@ function groupeListSetUp(switchPage){
     //on charge le modèle de ligne, puis on le supprime de l'html
     var $groupeRow = $("#grouperow");
     const rowModel = $groupeRow.clone();
+    console.log(rowModel.html());
+
     $groupeRow.remove();
     //on charge les groupes : pour l'instant des faux
     Groupes.forEach((groupe,index) => {
@@ -25,14 +21,20 @@ function groupeListSetUp(switchPage){
         var $list = $("#groupelist");
 
         $newRow.find("#name").text(groupe.name);
-        //$newRow.find("#Evenements").prop(id,"#Evenements" + index)
-        $('#Evenements').on('touchstart click', function (){
-            switchPage(Pages.GroupeEvenements);
+        $newRow.find("#Evenements").prop("id","Evenements" + index)
+        $newRow.find("#Amis").prop("id","Amis" + index)
+        $newRow.find("#Tchat").prop("id","Tchat" + index)
+
+        var options = {
+            groupId: index,
+        };
+        $newRow.find('#Evenements' + index).on('touchstart click', function (){
+            switchPage(Pages.GroupeEvenements,options);
         })
-        $('#Amis').on('touchstart click', function (){
+        $newRow.find('#Amis' + index).on('touchstart click', function (){
             switchPage(Pages.GroupeAmis);
         })
-        $('#Tchat').on('touchstart click', function (){
+        $newRow.find('#Tchat' + index).on('touchstart click', function (){
             switchPage(Pages.GroupeTchat);
         })
 

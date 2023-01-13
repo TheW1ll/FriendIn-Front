@@ -11,7 +11,8 @@ const GroupeEvents = [
     }
 ];
 
-export function renderGroupeEvenementsList($page, switchPage) {
+export function renderGroupeEvenementsList($page, switchPage, groupId) {
+    console.log(`group id ; ${groupId}`);
     $page.empty();
     $page.load("./views/groupeevenementslist.html",() => groupeEvenementsListSetUp(switchPage));
 }
