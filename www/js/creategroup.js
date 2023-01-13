@@ -6,12 +6,13 @@ export function renderCreateGroup($page, switchPage) {
 }
 
 function groupCreationSetUp(switchPage){
+    const creatorId = creatorId.val();
     const groupName = $groupName.val();
     const description = $description.val();
 
 
     //TODO : changer en requête inscription puis gérer la réponse
-    const request = 'http://localhost:8080/createUser/' + $groupName + '/' + $description;
+    const request = `http://localhost:8080/createGroup/${creatorId}/${groupName}`;
     console.log(request);
     const response = fetch(request, {method:'POST'})
         .then((data) => {

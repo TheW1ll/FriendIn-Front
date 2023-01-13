@@ -13,7 +13,7 @@ function buttonSetUp(switchPage){
         const login = $login.val();
         const password = $password.val();
         if (login!=null && password!=null){
-            const request = 'http://localhost:8080/checkLogin/' + login + '/' + password;
+            const request = `http://localhost:8080/checkLogin/${login}/${password}`;
             console.log(request);
             const response = fetch(request)
                 .then((data) => {
