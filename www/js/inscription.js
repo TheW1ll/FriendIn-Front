@@ -12,17 +12,24 @@ function inscriptionSetUp(switchPage){
     function submitForm(){
         const login = $login.val();
         const password = $password.val();
+
+
         //TODO : changer en requête inscription puis gérer la réponse
-        const request = 'http://localhost:8080/checkLogin?identifier=' + login + '&password=' + password;
+        const request = 'http://localhost:8080/createUser/' + login + '/' + password;
         console.log(request);
-        const response = fetch(request)
+        const response = fetch(request, {method:'POST'})
             .then((data) => {
-                //
+                return data.json()
             })
             .then((json) => {
-                console.log(json);
+                if(json==true){
+                    alert("Bonjour "+ login +", vous avez bien été enregistré.");
+                    switchPage(Pages.Login);
+                }
+                else{
+                    alert("L'utilisateur nommé '"+ login + "' existe déjà");
+                }
             })
-        switchPage(Pages.Login)
     }
 
     $('#Submit').on('touchstart click', function (){

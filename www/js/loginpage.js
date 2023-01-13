@@ -13,16 +13,24 @@ function buttonSetUp(switchPage){
         const login = $login.val();
         sessionStorage.setItem("logged_in", "true");
         const password = $password.val();
-        const request = 'http://localhost:8080/checkLogin?identifier=' + login + '&password=' + password;
-        console.log(request);
-        const response = fetch(request)
-            .then((data) => {
+        if (login!=null && password!=null){
+            const request = 'http://localhost:8080/checkLogin/' + login + '/' + password;
+            console.log(request);
+            const response = fetch(request)
+                .then((data) => {
+                    return data.json();
+                })
+                .then((json) => {
+                    if(json==true){
+                        switchPage(Pages.Home);
+                    }
+                    else{
+                        alert("Votre login et/ou votre mot de passe sont incorrects");
+                        switchPage(Pages.Login);
+                    }
+                })
+        }
 
-            })
-            .then((json) => {
-                console.log(json);
-            })
-        switchPage(Pages.Home)
     }
 
     $('#Connection').on('touchstart click', function (){
