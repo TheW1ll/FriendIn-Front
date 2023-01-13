@@ -41,3 +41,11 @@ function groupeListSetUp(switchPage){
         
     })
 }
+
+$(document).ready(function(){
+    $('.fixed-action-btn').floatingActionButton();
+
+    $('.fixed-action-btn').on('touchstart click', function () {
+        switchPage(pages.CreateGroup);
+    })
+});
