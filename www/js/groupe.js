@@ -4,7 +4,8 @@ const Groupes = [];
 
 export function renderGroupeList($page, switchPage) {
     $page.empty();
-    //Todo $groupCreated;
+
+    //Todo groupes;
     $page.load("./views/groupelist.html",() => groupeListSetUp(switchPage));
 }
 
@@ -16,11 +17,12 @@ function groupeListSetUp(switchPage){
 
     $groupeRow.remove();
     //on charge les groupes : pour l'instant des faux
-    Groupes.forEach((groupe,index) => {
+    Groupes.forEach((groupe) => {
+        var index = groupe.groupId;
         var $newRow = rowModel.clone()
         var $list = $("#groupelist");
 
-        $newRow.find("#name").text(groupe.name);
+        $newRow.find("#name").text(groupe.groupName);
         $newRow.find("#Evenements").prop("id","Evenements" + index)
         $newRow.find("#Amis").prop("id","Amis" + index)
         $newRow.find("#Tchat").prop("id","Tchat" + index)
