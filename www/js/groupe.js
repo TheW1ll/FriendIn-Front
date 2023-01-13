@@ -38,11 +38,13 @@ function groupeListSetUp(switchPage){
 
         $list.append($newRow);
 
+        // activate add floating button
         document.addEventListener('DOMContentLoaded', function() {
             var elems = document.querySelectorAll('.fixed-action-btn');
             var instances = M.FloatingActionButton.init(elems);
         });
 
+        // navigate vers la page createGroup on clickant sur le floating btn
         $('.fixed-action-btn').on('touchstart click', function () {
             switchPage(Pages.CreateGroup);
         })

@@ -7,6 +7,7 @@ import {renderGroupeList} from './groupe.js'
 import {renderGroupeEvenementsList} from './groupeevenements.js'
 import {renderGroupeAmisList} from './groupeamis.js'
 import {renderGroupeTchatList} from './groupetchat.js'
+import {renderCreateEvenement} from './createevenement.js'
 
 export const Pages = {
     Login: Symbol("login"),
@@ -18,6 +19,7 @@ export const Pages = {
     GroupeAmis: Symbol("groupeamislist"),
     GroupeTchat: Symbol("groupetchatlist"),
     CreateGroup: Symbol("create group"),
+    CreateEvenement: Symbol("create evenement"),
 }
 $(document).ready(function() {
     console.log("le doc est ready");
@@ -37,6 +39,7 @@ $(document).ready(function() {
             case Pages.GroupeEvenements : renderGroupeEvenementsList($page, switchPage); break;
             case Pages.GroupeAmis : renderGroupeAmisList($page, switchPage); break;
             case Pages.GroupeTchat : renderGroupeTchatList($page, switchPage); break;
+            case Pages.CreateEvenement : renderCreateEvenement($page, switchPage); break;
         }
     }
 
