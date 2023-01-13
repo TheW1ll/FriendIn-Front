@@ -48,15 +48,20 @@
         <title>OnlyFriendsIn</title>
     </head>
     <body>
-    <nav>
-        <div class="nav-wrapper teal">
-            <a href="#" class="brand-logo">OnlyFriendsIn</a>
-            <i class="material-icons right waves-effect" id="navgohome">home</i>
+    <div class="container">
+        <nav>
+            <div class="nav-wrapper teal" id="navbar">
+                <a href="#" class="brand-logo">OnlyFriendsIn</a>
+                <ul class="right">
+                    <li><a href="" id="logout" class="hide"><i class="material-icons left">exit_to_app</i>Logout</a></li>
+                    <li><a href="" id="navgohome"><i class="material-icons left" >home</i>Home</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div id="page-content">
+            <!-- page-content -->
         </div>
-    </nav>
-    <div id="page-content">
-
-    </div>
+    </div><!-- /container -->
     <section class="margin" class="card-panel teal center-align" id="card">
         <script src="cordova.js"></script>
         <script src="js/index.js"></script>
