@@ -1,12 +1,36 @@
 import {Pages} from "./app.js";
 
-const creatorId = sessionStorage.getItem("login");
-const Groupes = [];
+
+
+let Groupes = [
+    {
+        groupId: 1,
+        groupName: "Groupe 1"
+    },
+    {
+        groupId: 2,
+        groupName: "Groupe 2"
+    }
+];
 
 export function renderGroupeList($page, switchPage) {
+    const userId = sessionStorage.getItem("login");
     $page.empty();
-    /*$groupes.onload = function () {
-        console.log("L'id du créateur est " + creatorId);
+    const requestURL = `http://localhost:8080/getUserGroups/${userId}`;
+
+    const request = new XMLHttpRequest();
+    request.open('GET', requestURL);
+    request.responseType = 'json';
+    request.send();
+
+    request.onload = function() {
+        console.log(request.response);
+        Groupes=request.response;
+        console.log(Groupes);
+    }
+
+   /*Groupes.load = function () {
+        console.log("L'id du créateur est " + userId);
 
         //TODO : changer en requête inscription puis gérer la réponse
         const request = `http://localhost:8080//getUserGroups/${userId}`;
@@ -16,12 +40,8 @@ export function renderGroupeList($page, switchPage) {
                 return data.json()
             })
             .then((json) => {
-                if (json.groupCreated === true) {
-                    alert("Le groupe" + groupName + ", a été enregistré.");
-                    switchPage(Pages.Groupe);
-                } else {
-                    alert("Un groupe nommé '" + groupName + "' existe déjà");
-                }
+                console.json(json);
+                Groupes.append(json);
             })
     }*/
     $page.load("./views/groupelist.html",() => groupeListSetUp(switchPage));
