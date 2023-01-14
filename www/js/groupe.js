@@ -3,8 +3,8 @@ import {Pages} from "./app.js";
 export function renderGroupeList($page, switchPage) {
     const userId = sessionStorage.getItem("login");
     $page.empty();
-    const requestURL = `http://localhost:8080/getUserGroups/${userId}`;
 
+    const requestURL = `http://localhost:8080/getUserGroups/${userId}`;
     let groupDataRequest = fetch(requestURL);
 
     $page.load("./views/groupelist.html",() => groupeListSetUp(switchPage,groupDataRequest));

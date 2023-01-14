@@ -1,36 +1,34 @@
 import {Pages} from "./app.js";
 
-const GroupeEvents = [
-    {
-        name: "Grande Fête",
-        date: new Date(Date.now())
-    },
-    {
-        name: "Petite Fête",
-        date: new Date(Date.now())
-    }
-];
-
 export function renderGroupeEvenementsList($page, switchPage, groupId) {
     console.log(`group id ; ${groupId}`);
     $page.empty();
-    $page.load("./views/groupeevenementslist.html",() => groupeEvenementsListSetUp(switchPage));
+
+    const requestURL = `http://localhost:8080/getGroupEvents/${groupId}`;
+    let eventsRequest = fetch(requestURL);
+
+    $page.load("./views/groupeevenementslist.html",() => groupeEvenementsListSetUp(switchPage,groupId,eventsRequest));
 }
 
-function groupeEvenementsListSetUp(switchPage){
+function groupeEvenementsListSetUp(switchPage, groupId, eventsRequest){
     //on charge le modèle de ligne, puis on le supprime de l'html
     var $eventRow = $("#eventrow");
     const rowModel = $eventRow.clone();
     $eventRow.remove();
-    //on charge les évènements : pour l'instant des faux
-    GroupeEvents.forEach((event) => {
-        var $newRow = rowModel.clone()
-        var $list = $("#eventlist");
 
-        $newRow.find("#name").text(event.name);
-        $newRow.find("#date").text(event.date.toDateString());
-        $list.append($newRow);
-    })
+    eventsRequest
+        .then((response) => response.json())
+        .then((events) => {
+            events.forEach((event) => {
+                var $newRow = rowModel.clone()
+                var $list = $("#eventlist");
+
+                $newRow.find("#name").text(event.eventName);
+                $newRow.find("#date").text(event.dateDebut);
+                $list.append($newRow);
+            })
+
+        })
 
     // activate add floating button
     document.addEventListener('DOMContentLoaded', function() {
@@ -40,6 +38,8 @@ function groupeEvenementsListSetUp(switchPage){
 
     // navigate vers la page createGroup on clickant sur le floating btn
     $('.fixed-action-btn').on('touchstart click', function () {
-        switchPage(Pages.CreateEvenement);
+        switchPage(Pages.CreateEvenement,{
+            groupId: groupId,
+        });
     })
 }
