@@ -37,9 +37,9 @@ $(document).ready(function() {
             case Pages.CreateGroup : renderCreateGroup($page, switchPage); break;
             case Pages.Groupe : renderGroupeList($page, switchPage); break;
             case Pages.GroupeEvenements : renderGroupeEvenementsList($page, switchPage, options.groupId); break;
-            case Pages.GroupeAmis : renderGroupeAmisList($page, switchPage); break;
-            case Pages.GroupeTchat : renderGroupeTchatList($page, switchPage); break;
-            case Pages.CreateEvenement : renderCreateEvenement($page, switchPage); break;
+            case Pages.GroupeAmis : renderGroupeAmisList($page, switchPage, options.groupId); break;
+            case Pages.GroupeTchat : renderGroupeTchatList($page, switchPage, options.groupId); break;
+            case Pages.CreateEvenement : renderCreateEvenement($page, switchPage, options.groupId); break;
         }
     }
 

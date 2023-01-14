@@ -27,7 +27,7 @@ const Tchats = [
     }
 ];
 
-export function renderGroupeTchatList($page, switchPage) {
+export function renderGroupeTchatList($page, switchPage, groupId) {
     $page.empty();
     $page.load("./views/groupetchat.html",() => groupeTchatSetUp(switchPage));
 }
