@@ -79,10 +79,10 @@ $(document).ready(function() {
             case Pages.Inscription : renderInscriptionPage($page); break;
             case Pages.Home : renderHomePage($page); break;
             case Pages.Agenda : renderAgendaList($page); break;
-            case Pages.CreateGroup : renderCreateGroup($page, switchPage); break;
+            case Pages.CreateGroup : renderCreateGroup($page); break;
             case Pages.Groupe : renderGroupeList($page, switchPage); break;
             case Pages.GroupeEvenements : renderGroupeEvenementsList($page, switchPage, options.groupId); break;
-            case Pages.GroupeAmis : renderGroupeAmisList($page, switchPage, options.groupId); break;
+            case Pages.GroupeAmis : renderGroupeAmisList($page, options.groupId); break;
             case Pages.GroupeTchat : renderGroupeTchatList($page, switchPage, options.groupId); break;
             case Pages.CreateEvenement : renderCreateEvenement($page, switchPage, options.groupId); break;
         }

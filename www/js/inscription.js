@@ -1,5 +1,3 @@
-import {Pages} from "./app.js";
-
 export function renderInscriptionPage($page) {
     $page.empty();
     $page.load("./views/inscription.html",() => inscriptionSetUp());
@@ -13,11 +11,9 @@ function inscriptionSetUp(){
         const login = $login.val();
         const password = $password.val();
 
-
-        //TODO : changer en requête inscription puis gérer la réponse
         const request = `http://localhost:8080/createUser/${login}/${password}`;
         console.log(request);
-        const response = fetch(request, {method:'POST'})
+        fetch(request, {method:'POST'})
             .then((data) => {
                 return data.json()
             })

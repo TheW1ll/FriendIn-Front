@@ -1,5 +1,3 @@
-import {Pages} from "./app.js";
-
 const Tchats = [
     {
         name: "Harold Godwinson",
@@ -34,13 +32,13 @@ export function renderGroupeTchatList($page, switchPage, groupId) {
 
 function groupeTchatSetUp(switchPage){
     //on charge le modèle de ligne, puis on le supprime de l'html
-    var $tchatRow = $("#tchatrow");
+    const $tchatRow = $("#tchatrow");
     const rowModel = $tchatRow.clone();
     $tchatRow.remove();
     //on charge les évènements : pour l'instant des faux
     Tchats.forEach((tchat) => {
-        var $newRow = rowModel.clone()
-        var $list = $("#tchatlist");
+        const $newRow = rowModel.clone();
+        const $list = $("#tchatlist");
 
         $newRow.find("#name").text(tchat.name);
         $newRow.find("#discussion").text(tchat.discussion);

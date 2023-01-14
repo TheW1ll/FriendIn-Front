@@ -1,4 +1,3 @@
-import {Pages} from "./app.js";
 
 export function renderGroupeList($page, switchPage) {
     const userId = sessionStorage.getItem("login");
@@ -13,7 +12,7 @@ export function renderGroupeList($page, switchPage) {
 
 function groupeListSetUp(switchPage, groupDataRequest){
     //on charge le modèle de ligne, puis on le supprime de l'html
-    var $groupeRow = $("#grouperow");
+    const $groupeRow = $("#grouperow");
     const rowModel = $groupeRow.clone();
     console.log(rowModel.html());
 
@@ -37,8 +36,8 @@ function groupeListSetUp(switchPage, groupDataRequest){
 
         // activate add floating button
         document.addEventListener('DOMContentLoaded', function() {
-            var elems = document.querySelectorAll('.fixed-action-btn');
-            var instances = M.FloatingActionButton.init(elems);
+            const elems = document.querySelectorAll('.fixed-action-btn');
+            M.FloatingActionButton.init(elems);
         });
 
     })

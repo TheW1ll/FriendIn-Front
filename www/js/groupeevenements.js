@@ -1,5 +1,3 @@
-import {Pages} from "./app.js";
-
 export function renderGroupeEvenementsList($page, switchPage, groupId) {
     console.log(`group id ; ${groupId}`);
     $page.empty();
@@ -14,7 +12,7 @@ function groupeEvenementsListSetUp(switchPage, groupId, eventsRequest){
     //on modifie le lien du bouton de création pour prendre en compte l'id du groupe
     $("#eventbutton").prop("href",`#creerEvenement/${groupId}`)
     //on charge le modèle de ligne, puis on le supprime de l'html
-    var $eventRow = $("#eventrow");
+    const $eventRow = $("#eventrow");
     const rowModel = $eventRow.clone();
     $eventRow.remove();
 
@@ -22,8 +20,8 @@ function groupeEvenementsListSetUp(switchPage, groupId, eventsRequest){
         .then((response) => response.json())
         .then((events) => {
             events.forEach((event) => {
-                var $newRow = rowModel.clone()
-                var $list = $("#eventlist");
+                const $newRow = rowModel.clone();
+                const $list = $("#eventlist");
 
                 $newRow.find("#name").text(event.eventName);
                 $newRow.find("#date").text(event.dateDebut);
@@ -34,8 +32,8 @@ function groupeEvenementsListSetUp(switchPage, groupId, eventsRequest){
 
     // activate add floating button
     document.addEventListener('DOMContentLoaded', function() {
-        var elems = document.querySelectorAll('.fixed-action-btn');
-        var instances = M.FloatingActionButton.init(elems);
+        const elems = document.querySelectorAll('.fixed-action-btn');
+        M.FloatingActionButton.init(elems);
     });
 
 }

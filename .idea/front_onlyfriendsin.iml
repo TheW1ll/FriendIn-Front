@@ -17,5 +17,6 @@
     <orderEntry type="library" name="jquery-3.6.1" level="application" />
     <orderEntry type="library" name="fullcalendar" level="application" />
     <orderEntry type="library" name="materialize" level="application" />
+    <orderEntry type="library" name="fullcalendar" level="application" />
   </component>
 </module>

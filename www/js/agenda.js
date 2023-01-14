@@ -1,5 +1,3 @@
-import {Pages} from "./app.js";
-
 const Events = [
     {
         name: "Restaurant",
@@ -20,24 +18,24 @@ export function renderAgendaList($page) {
 
 function agendaListSetUp(){
     //on met en place les tabs
-    var el = document.querySelector('.tabs');
+    const el = document.querySelector('.tabs');
     M.Tabs.init(el, {});
     //on charge le modèle de ligne, puis on le supprime de l'html
-    var $eventRow = $("#eventrow");
+    const $eventRow = $("#eventrow");
     const rowModel = $eventRow.clone();
     $eventRow.remove();
     //on charge les évènements : pour l'instant des faux
     Events.forEach((event) => {
-        var $newRow = rowModel.clone()
-        var $list = $("#eventlist");
+        const $newRow = rowModel.clone()
+        const $list = $("#eventlist");
 
         $newRow.find("#nameEventAgenda").text(event.name);
         $newRow.find("#dateEventAgenda").text(event.date.toDateString());
         $list.append($newRow);
     })
 
-    var calendarEl = document.getElementById('calendar');
-    var calendar = new FullCalendar.Calendar(calendarEl, {
+    const calendarEl = document.getElementById('calendar');
+    const calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
         contentHeight: 600,
         events: Events.map((event) => {

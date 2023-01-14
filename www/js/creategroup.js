@@ -1,11 +1,10 @@
-import {Pages} from "./app.js";
 
-export function renderCreateGroup($page, switchPage) {
+export function renderCreateGroup($page) {
     $page.empty();
-    $page.load("./views/creategroup.html",() => groupCreationSetUp(switchPage));
+    $page.load("./views/creategroup.html",() => groupCreationSetUp());
 }
 
-function groupCreationSetUp(switchPage){
+function groupCreationSetUp(){
     const $groupName = $('#groupName');
     const $description = $('#description');
     function submitForm() {
@@ -21,7 +20,7 @@ function groupCreationSetUp(switchPage){
             body: description,
         })
         console.log(request);
-        const response = fetch(request)
+        fetch(request)
             .then((data) => {
                 return data.json()
             })

@@ -1,4 +1,3 @@
-import {Pages} from "./app.js";
 
 const GroupeAmis = [
     {
@@ -9,20 +8,20 @@ const GroupeAmis = [
     }
 ];
 
-export function renderGroupeAmisList($page, switchPage, groupId) {
+export function renderGroupeAmisList($page, groupId) {
     $page.empty();
-    $page.load("./views/groupeamislist.html",() => groupeAmisListSetUp(switchPage));
+    $page.load("./views/groupeamislist.html",() => groupeAmisListSetUp());
 }
 
-function groupeAmisListSetUp(switchPage){
+function groupeAmisListSetUp(){
     //on charge le modèle de ligne, puis on le supprime de l'html
-    var $friendRow = $("#friendrow");
+    const $friendRow = $("#friendrow");
     const rowModel = $friendRow.clone();
     $friendRow.remove();
     //on charge les évènements : pour l'instant des faux
     GroupeAmis.forEach((ami) => {
-        var $newRow = rowModel.clone()
-        var $list = $("#friendlist");
+        const $newRow = rowModel.clone()
+        const $list = $("#friendlist");
 
         $newRow.find("#name").text(ami.name);
         $list.append($newRow);

@@ -15,7 +15,7 @@ function buttonSetUp(switchPage){
         if (login!=null && password!=null){
             const request = `http://localhost:8080/checkLogin/${login}/${password}`;
             console.log(request);
-            const response = fetch(request)
+            fetch(request)
                 .then((data) => {
                     return data.json();
                 })
@@ -24,7 +24,6 @@ function buttonSetUp(switchPage){
                         sessionStorage.setItem("logged_in", "true");
                         sessionStorage.setItem("login", login);
                         // créer évènement login
-                        let e = $.Event("login");
                         $(window).trigger("login_change",[true])
                         switchPage(Pages.Home);
                     }

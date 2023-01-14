@@ -1,4 +1,3 @@
-import {Pages} from "./app.js";
 
 export function renderCreateEvenement($page, switchPage, groupId) {
     $page.empty();
@@ -7,6 +6,6 @@ export function renderCreateEvenement($page, switchPage, groupId) {
 
 // activate datepicker
 document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.datepicker');
-    var instances = M.Datepicker.init(elems);
+    const elems = document.querySelectorAll('.datepicker');
+    M.Datepicker.init(elems);
 });
