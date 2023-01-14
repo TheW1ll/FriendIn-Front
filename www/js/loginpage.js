@@ -46,7 +46,4 @@ function buttonSetUp(switchPage){
         submitForm();
     })
 
-    $('#Inscription').on('touchstart click', function (){
-        switchPage(Pages.Inscription);
-    })
 }

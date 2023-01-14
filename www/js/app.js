@@ -8,6 +8,7 @@ import {renderGroupeEvenementsList} from './groupeevenements.js'
 import {renderGroupeAmisList} from './groupeamis.js'
 import {renderGroupeTchatList} from './groupetchat.js'
 import {renderCreateEvenement} from './createevenement.js'
+import {router} from './router.js'
 
 export const Pages = {
     Login: Symbol("login"),
@@ -25,15 +26,59 @@ $(document).ready(function() {
     console.log("le doc est ready");
     const $page = $('#page-content');
 
-    switchPage(Pages.Login);
+    //ajout des routes
+
+    router.addRoute('', function() {
+        if (sessionStorage.getItem("logged_in") === "true"){
+            switchPage(Pages.Home);
+        }
+        else {
+            switchPage(Pages.Login);
+        }
+    });
+
+    router.addRoute('inscription', function() {
+        switchPage(Pages.Inscription);
+    });
+
+    router.addRoute('agenda', function() {
+        switchPage(Pages.Agenda);
+    });
+
+    router.addRoute('groupes', function() {
+        switchPage(Pages.Groupe);
+    });
+
+    router.addRoute('evenements/:groupId', function(groupId) {
+        switchPage(Pages.GroupeEvenements, {groupId:groupId});
+    });
+
+    router.addRoute('membres/:groupId', function(groupId) {
+        switchPage(Pages.GroupeAmis, {groupId:groupId});
+    });
+
+    router.addRoute('chat/:groupId', function(groupId) {
+        switchPage(Pages.GroupeTchat, {groupId:groupId});
+    });
+
+    router.addRoute('creerGroupe', function() {
+        switchPage(Pages.CreateGroup);
+    });
+
+    router.addRoute('creerEvenement/:groupId',function(groupId) {
+        switchPage(Pages.CreateEvenement, {groupId:groupId});
+    });
+
+    //démarrer le router
+    router.start()
 
     function switchPage(pageType, options) {
         console.log("on switch vers" + pageType.toString());
         switch(pageType) {
             case Pages.Login : renderLoginPage($page, switchPage); break;
-            case Pages.Inscription : renderInscriptionPage($page, switchPage); break;
-            case Pages.Home : renderHomePage($page, switchPage); break;
-            case Pages.Agenda : renderAgendaList($page, switchPage); break;
+            case Pages.Inscription : renderInscriptionPage($page); break;
+            case Pages.Home : renderHomePage($page); break;
+            case Pages.Agenda : renderAgendaList($page); break;
             case Pages.CreateGroup : renderCreateGroup($page, switchPage); break;
             case Pages.Groupe : renderGroupeList($page, switchPage); break;
             case Pages.GroupeEvenements : renderGroupeEvenementsList($page, switchPage, options.groupId); break;
@@ -42,16 +87,6 @@ $(document).ready(function() {
             case Pages.CreateEvenement : renderCreateEvenement($page, switchPage, options.groupId); break;
         }
     }
-
-    $('#navgohome').on('touchstart click', function (){
-        if (sessionStorage.getItem("logged_in") === "true"){
-            switchPage(Pages.Home);
-        }
-        else {
-            switchPage(Pages.Login);
-        }
-
-    })
 
     $(window).on("login_change", (event, is_login) => {
         if(is_login){

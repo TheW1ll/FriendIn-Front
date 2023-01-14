@@ -13,12 +13,12 @@ const Events = [
     }
 ];
 
-export function renderAgendaList($page, switchPage) {
+export function renderAgendaList($page) {
     $page.empty();
-    $page.load("./views/agenda.html",() => agendaListSetUp(switchPage));
+    $page.load("./views/agenda.html",() => agendaListSetUp());
 }
 
-function agendaListSetUp(switchPage){
+function agendaListSetUp(){
     //on met en place les tabs
     var el = document.querySelector('.tabs');
     M.Tabs.init(el, {});

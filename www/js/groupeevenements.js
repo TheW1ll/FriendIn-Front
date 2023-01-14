@@ -11,6 +11,8 @@ export function renderGroupeEvenementsList($page, switchPage, groupId) {
 }
 
 function groupeEvenementsListSetUp(switchPage, groupId, eventsRequest){
+    //on modifie le lien du bouton de création pour prendre en compte l'id du groupe
+    $("#eventbutton").prop("href",`#creerEvenement/${groupId}`)
     //on charge le modèle de ligne, puis on le supprime de l'html
     var $eventRow = $("#eventrow");
     const rowModel = $eventRow.clone();
@@ -36,10 +38,4 @@ function groupeEvenementsListSetUp(switchPage, groupId, eventsRequest){
         var instances = M.FloatingActionButton.init(elems);
     });
 
-    // navigate vers la page createGroup on clickant sur le floating btn
-    $('.fixed-action-btn').on('touchstart click', function () {
-        switchPage(Pages.CreateEvenement,{
-            groupId: groupId,
-        });
-    })
 }

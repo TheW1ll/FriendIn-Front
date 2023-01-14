@@ -28,22 +28,9 @@ function groupeListSetUp(switchPage, groupDataRequest){
                 const $list = $("#groupelist");
 
                 $newRow.find("#name").text(groupe.groupName);
-                $newRow.find("#Evenements").prop("id","Evenements" + index)
-                $newRow.find("#Amis").prop("id","Amis" + index)
-                $newRow.find("#Tchat").prop("id","Tchat" + index)
-
-                const options = {
-                    groupId: index,
-                };
-                $newRow.find('#Evenements' + index).on('touchstart click', function (){
-                    switchPage(Pages.GroupeEvenements,options);
-                })
-                $newRow.find('#Amis' + index).on('touchstart click', function (){
-                    switchPage(Pages.GroupeAmis);
-                })
-                $newRow.find('#Tchat' + index).on('touchstart click', function (){
-                    switchPage(Pages.GroupeTchat);
-                })
+                $newRow.find("#Evenements").prop("href",`#evenements/${index}`)
+                $newRow.find("#Amis").prop("href",`#membres/${index}`)
+                $newRow.find("#Tchat").prop("href",`#chat/${index}`)
 
                 $list.append($newRow);
         })
@@ -53,11 +40,6 @@ function groupeListSetUp(switchPage, groupDataRequest){
             var elems = document.querySelectorAll('.fixed-action-btn');
             var instances = M.FloatingActionButton.init(elems);
         });
-
-        // navigate vers la page createGroup on clickant sur le floating btn
-        $('.fixed-action-btn').on('touchstart click', function () {
-            switchPage(Pages.CreateGroup);
-        })
 
     })
 }

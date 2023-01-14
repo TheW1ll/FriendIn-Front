@@ -28,7 +28,7 @@ function groupCreationSetUp(switchPage){
             .then((json) => {
                 if (json.groupCreated === true) {
                     alert("Le groupe" + groupName + ", a été enregistré.");
-                    switchPage(Pages.Groupe);
+                    window.location.href = "#groupes"
                 } else {
                     alert("Un groupe nommé '" + groupName + "' existe déjà");
                 }

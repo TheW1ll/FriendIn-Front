@@ -1,11 +1,11 @@
 import {Pages} from "./app.js";
 
-export function renderInscriptionPage($page, switchPage) {
+export function renderInscriptionPage($page) {
     $page.empty();
-    $page.load("./views/inscription.html",() => inscriptionSetUp(switchPage));
+    $page.load("./views/inscription.html",() => inscriptionSetUp());
 }
 
-function inscriptionSetUp(switchPage){
+function inscriptionSetUp(){
     const $login = $('#login');
     const $password= $('#password');
 
@@ -23,8 +23,8 @@ function inscriptionSetUp(switchPage){
             })
             .then((json) => {
                 if(json==true){
-                    alert("Bonjour "+ login +", vous avez bien été enregistré.");
-                    switchPage(Pages.Login);
+                    alert("Bonjour " + login + " , vous avez bien été enregistré.");
+                    window.location.href = "#"
                 }
                 else{
                     alert("L'utilisateur nommé '"+ login + "' existe déjà");
