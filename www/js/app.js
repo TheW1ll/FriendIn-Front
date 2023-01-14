@@ -44,19 +44,29 @@ $(document).ready(function() {
     }
 
     $('#navgohome').on('touchstart click', function (){
-        switchPage(Pages.Home);
+        if (sessionStorage.getItem("logged_in") === "true"){
+            switchPage(Pages.Home);
+        }
+        else {
+            switchPage(Pages.Login);
+        }
+
     })
 
-    addEventListener('storage', (event) => {
-        console.log("test")
-        if(event.key === "logged_in" && event.newValue === "true") {
+    $(window).on("login_change", (event, is_login) => {
+        if(is_login){
             $('#logout').removeClass('hide');
         }
-        else if(event.key === "logged_in" && event.newValue === "false"){
+        else {
             $('#logout').addClass('hide');
         }
     })
 
+    $('#logout').on('touchstart click', function (){
+        sessionStorage.setItem("logged_in","false");
+        $(window).trigger("login_change",[false])
+        switchPage(Pages.Login)
+    })
 
 
 })

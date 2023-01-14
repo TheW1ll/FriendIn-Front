@@ -15,7 +15,6 @@ function groupCreationSetUp(switchPage){
 
         console.log("L'id du créateur est " + creatorId);
 
-        //TODO : changer en requête inscription puis gérer la réponse
         const requestRoute = `http://localhost:8080/createGroup/${creatorId}/${groupName}`;
         const request = new Request(requestRoute, {
             method:"POST",
