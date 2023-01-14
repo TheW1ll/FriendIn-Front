@@ -23,6 +23,9 @@ function buttonSetUp(switchPage){
                     if(json==true){
                         sessionStorage.setItem("logged_in", "true");
                         sessionStorage.setItem("login", login);
+                        // créer évènement login
+                        let e = $.Event("login");
+                        $(window).trigger("login_change",[true])
                         switchPage(Pages.Home);
                     }
                     else{

@@ -9,7 +9,7 @@ const GroupeAmis = [
     }
 ];
 
-export function renderGroupeAmisList($page, switchPage) {
+export function renderGroupeAmisList($page, switchPage, groupId) {
     $page.empty();
     $page.load("./views/groupeamislist.html",() => groupeAmisListSetUp(switchPage));
 }

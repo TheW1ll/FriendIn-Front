@@ -37,26 +37,36 @@ $(document).ready(function() {
             case Pages.CreateGroup : renderCreateGroup($page, switchPage); break;
             case Pages.Groupe : renderGroupeList($page, switchPage); break;
             case Pages.GroupeEvenements : renderGroupeEvenementsList($page, switchPage, options.groupId); break;
-            case Pages.GroupeAmis : renderGroupeAmisList($page, switchPage); break;
-            case Pages.GroupeTchat : renderGroupeTchatList($page, switchPage); break;
-            case Pages.CreateEvenement : renderCreateEvenement($page, switchPage); break;
+            case Pages.GroupeAmis : renderGroupeAmisList($page, switchPage, options.groupId); break;
+            case Pages.GroupeTchat : renderGroupeTchatList($page, switchPage, options.groupId); break;
+            case Pages.CreateEvenement : renderCreateEvenement($page, switchPage, options.groupId); break;
         }
     }
 
     $('#navgohome').on('touchstart click', function (){
-        switchPage(Pages.Home);
+        if (sessionStorage.getItem("logged_in") === "true"){
+            switchPage(Pages.Home);
+        }
+        else {
+            switchPage(Pages.Login);
+        }
+
     })
 
-    addEventListener('storage', (event) => {
-        console.log("test")
-        if(event.key === "logged_in" && event.newValue === "true") {
+    $(window).on("login_change", (event, is_login) => {
+        if(is_login){
             $('#logout').removeClass('hide');
         }
-        else if(event.key === "logged_in" && event.newValue === "false"){
+        else {
             $('#logout').addClass('hide');
         }
     })
 
+    $('#logout').on('touchstart click', function (){
+        sessionStorage.setItem("logged_in","false");
+        $(window).trigger("login_change",[false])
+        switchPage(Pages.Login)
+    })
 
 
 })
