@@ -1,13 +1,32 @@
 import {Pages} from "./app.js";
 
+const creatorId = sessionStorage.getItem("login");
 const Groupes = [];
 
 export function renderGroupeList($page, switchPage) {
     $page.empty();
+    /*$groupes.onload = function () {
+        console.log("L'id du créateur est " + creatorId);
 
-    //Todo groupes;
+        //TODO : changer en requête inscription puis gérer la réponse
+        const request = `http://localhost:8080//getUserGroups/${userId}`;
+        console.log(request);
+        const response = fetch(request)
+            .then((data) => {
+                return data.json()
+            })
+            .then((json) => {
+                if (json.groupCreated === true) {
+                    alert("Le groupe" + groupName + ", a été enregistré.");
+                    switchPage(Pages.Groupe);
+                } else {
+                    alert("Un groupe nommé '" + groupName + "' existe déjà");
+                }
+            })
+    }*/
     $page.load("./views/groupelist.html",() => groupeListSetUp(switchPage));
 }
+
 
 function groupeListSetUp(switchPage){
     //on charge le modèle de ligne, puis on le supprime de l'html
