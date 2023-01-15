@@ -12,7 +12,6 @@ function inscriptionSetUp(){
         const password = $password.val();
 
         const request = `http://localhost:8080/createUser/${login}/${password}`;
-        console.log(request);
         fetch(request, {method:'POST'})
             .then((data) => {
                 return data.json()

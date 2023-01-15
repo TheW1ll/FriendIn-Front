@@ -8,10 +8,10 @@ export function renderGroupeAmisList($page, groupId) {
     requestURL = `http://localhost:8080/getOwner/${groupId}`;
     let groupOwnerRequest = fetch(requestURL);
 
-    $page.load("./views/groupeamislist.html",() => groupeAmisListSetUp(groupMembersRequest, groupOwnerRequest));
+    $page.load("./views/groupeamislist.html",() => groupeAmisListSetUp(groupMembersRequest, groupOwnerRequest, groupId));
 }
 
-function groupeAmisListSetUp(groupMembersRequest, ownerRequest){
+function groupeAmisListSetUp(groupMembersRequest, ownerRequest, groupId){
     //on charge le modèle de ligne, puis on le supprime de l'html
     const $friendRow = $("#friendrow");
     const rowModel = $friendRow.clone();
@@ -33,6 +33,9 @@ function groupeAmisListSetUp(groupMembersRequest, ownerRequest){
         const elems = document.querySelectorAll('.fixed-action-btn');
         M.FloatingActionButton.init(elems);
     });
+
+    //changer le lien vers lequel le bouton d'invitation pointe
+    $("#invitebutton").prop("href",`#inviterMembre/${groupId}`);
 
     //si on est le créateur du groupe, le bouton pour inviter un membre est visible
     ownerRequest

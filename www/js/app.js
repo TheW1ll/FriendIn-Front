@@ -9,6 +9,7 @@ import {renderGroupeAmisList} from './groupeamis.js'
 import {renderGroupeTchatList} from './groupetchat.js'
 import {renderCreateEvenement} from './createevenement.js'
 import {router} from './router.js'
+import {renderInviteMember} from "./invitemember.js";
 
 export const Pages = {
     Login: Symbol("login"),
@@ -21,7 +22,9 @@ export const Pages = {
     GroupeTchat: Symbol("groupetchatlist"),
     CreateGroup: Symbol("create group"),
     CreateEvenement: Symbol("create evenement"),
+    InviteMember: Symbol("invitemember"),
 }
+
 $(document).ready(function() {
     console.log("le doc est ready");
     const $page = $('#page-content');
@@ -69,6 +72,10 @@ $(document).ready(function() {
         switchPage(Pages.CreateEvenement, {groupId:groupId});
     });
 
+    router.addRoute('inviterMembre/:groupId',function(groupId) {
+        switchPage(Pages.InviteMember, {groupId:groupId});
+    });
+
     //démarrer le router
     router.start()
 
@@ -85,6 +92,7 @@ $(document).ready(function() {
             case Pages.GroupeAmis : renderGroupeAmisList($page, options.groupId); break;
             case Pages.GroupeTchat : renderGroupeTchatList($page, switchPage, options.groupId); break;
             case Pages.CreateEvenement : renderCreateEvenement($page, switchPage, options.groupId); break;
+            case Pages.InviteMember : renderInviteMember($page, options.groupId); break;
         }
     }
 
