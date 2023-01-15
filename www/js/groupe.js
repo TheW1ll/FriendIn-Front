@@ -14,7 +14,6 @@ function groupeListSetUp(switchPage, groupDataRequest){
     //on charge le modèle de ligne, puis on le supprime de l'html
     const $groupeRow = $("#grouperow");
     const rowModel = $groupeRow.clone();
-    console.log(rowModel.html());
 
     $groupeRow.remove();
 

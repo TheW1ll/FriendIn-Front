@@ -1,29 +1,46 @@
 
-const GroupeAmis = [
-    {
-        name: "William Le Conquérant",
-    },
-    {
-        name: "Harold Godwinson",
-    }
-];
-
 export function renderGroupeAmisList($page, groupId) {
     $page.empty();
-    $page.load("./views/groupeamislist.html",() => groupeAmisListSetUp());
+
+    let requestURL = `http://localhost:8080/getGroupMembers/${groupId}`;
+    let groupMembersRequest = fetch(requestURL);
+
+    requestURL = `http://localhost:8080/getOwner/${groupId}`;
+    let groupOwnerRequest = fetch(requestURL);
+
+    $page.load("./views/groupeamislist.html",() => groupeAmisListSetUp(groupMembersRequest, groupOwnerRequest));
 }
 
-function groupeAmisListSetUp(){
+function groupeAmisListSetUp(groupMembersRequest, ownerRequest){
     //on charge le modèle de ligne, puis on le supprime de l'html
     const $friendRow = $("#friendrow");
     const rowModel = $friendRow.clone();
     $friendRow.remove();
     //on charge les évènements : pour l'instant des faux
-    GroupeAmis.forEach((ami) => {
-        const $newRow = rowModel.clone()
-        const $list = $("#friendlist");
+    groupMembersRequest
+        .then((response) => response.json())
+        .then((members) => {
+            members.forEach((ami) => {
+                const $newRow = rowModel.clone()
+                const $list = $("#friendlist");
 
-        $newRow.find("#name").text(ami.name);
-        $list.append($newRow);
-    })
+                $newRow.find("#name").text(ami);
+                $list.append($newRow);
+            })
+        })
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const elems = document.querySelectorAll('.fixed-action-btn');
+        M.FloatingActionButton.init(elems);
+    });
+
+    //si on est le créateur du groupe, le bouton pour inviter un membre est visible
+    ownerRequest
+        .then((response) => response.json())
+        .then((ownerResponse) => {
+            if(ownerResponse.groupOwnerId === sessionStorage.getItem("login")){
+                $("#invitebutton").removeClass("hide");
+            }
+        })
+
 }
