@@ -8,7 +8,6 @@ function inviteMemberSetUp(groupId) {
     const $memberId = $("#memberId");
     function submitForm(){
         const memberId = $memberId.val();
-        const login = sessionStorage.getItem("login");
         const password = sessionStorage.getItem("password");
         if (memberId !== ""){
             const requestURL = `http://localhost:8080/inviteToGroup/${groupId}/${memberId}/${password}`;
