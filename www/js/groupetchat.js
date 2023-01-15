@@ -25,12 +25,12 @@ const Tchats = [
     }
 ];
 
-export function renderGroupeTchatList($page, switchPage, groupId) {
+export function renderGroupeTchatList($page, groupId) {
     $page.empty();
-    $page.load("./views/groupetchat.html",() => groupeTchatSetUp(switchPage));
+    $page.load("./views/groupetchat.html",() => groupeTchatSetUp());
 }
 
-function groupeTchatSetUp(switchPage){
+function groupeTchatSetUp(){
     //on charge le modèle de ligne, puis on le supprime de l'html
     const $tchatRow = $("#tchatrow");
     const rowModel = $tchatRow.clone();

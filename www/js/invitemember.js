@@ -6,6 +6,7 @@ export function renderInviteMember($page, groupId) {
 
 function inviteMemberSetUp(groupId) {
     const $memberId = $("#memberId");
+
     function submitForm(){
         const memberId = $memberId.val();
         const password = sessionStorage.getItem("password");

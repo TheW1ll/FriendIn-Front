@@ -80,18 +80,21 @@ $(document).ready(function() {
     router.start()
 
     function switchPage(pageType, options) {
-        console.log("on switch vers" + pageType.toString());
+        console.log("on switch vers : " + pageType.toString());
+        if(options !== undefined){
+            console.log("options : " + options.groupId);
+        }
         switch(pageType) {
             case Pages.Login : renderLoginPage($page, switchPage); break;
             case Pages.Inscription : renderInscriptionPage($page); break;
             case Pages.Home : renderHomePage($page); break;
             case Pages.Agenda : renderAgendaList($page); break;
             case Pages.CreateGroup : renderCreateGroup($page); break;
-            case Pages.Groupe : renderGroupeList($page, switchPage); break;
-            case Pages.GroupeEvenements : renderGroupeEvenementsList($page, switchPage, options.groupId); break;
+            case Pages.Groupe : renderGroupeList($page); break;
+            case Pages.GroupeEvenements : renderGroupeEvenementsList($page, options.groupId); break;
             case Pages.GroupeAmis : renderGroupeAmisList($page, options.groupId); break;
-            case Pages.GroupeTchat : renderGroupeTchatList($page, switchPage, options.groupId); break;
-            case Pages.CreateEvenement : renderCreateEvenement($page, switchPage, options.groupId); break;
+            case Pages.GroupeTchat : renderGroupeTchatList($page, options.groupId); break;
+            case Pages.CreateEvenement : renderCreateEvenement($page, options.groupId); break;
             case Pages.InviteMember : renderInviteMember($page, options.groupId); break;
         }
     }

@@ -1,16 +1,16 @@
 
-export function renderGroupeList($page, switchPage) {
+export function renderGroupeList($page) {
     const userId = sessionStorage.getItem("login");
     $page.empty();
 
     const requestURL = `http://localhost:8080/getUserGroups/${userId}`;
     let groupDataRequest = fetch(requestURL);
 
-    $page.load("./views/groupelist.html",() => groupeListSetUp(switchPage,groupDataRequest));
+    $page.load("./views/groupelist.html",() => groupeListSetUp(groupDataRequest));
 }
 
 
-function groupeListSetUp(switchPage, groupDataRequest){
+function groupeListSetUp(groupDataRequest){
     //on charge le modèle de ligne, puis on le supprime de l'html
     const $groupeRow = $("#grouperow");
     const rowModel = $groupeRow.clone();
