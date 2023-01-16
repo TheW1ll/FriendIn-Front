@@ -2,19 +2,48 @@
     <h1>Groupe</h1>
     <div>
         <ul id="groupelist" class="collection with-header">
-            <li class="collection-header"><h4>Vos Groupes</h4></li>
-                <li id="grouperow" class="collection-item">
-                    <div>
-                        <h4 id="name">${groupe.name}</h4>
-                        <p>
-                            <div class = "center-block">
-                                <a class="waves-effect waves-light btn" id="Evenements">Nos Evenements</a>
-                                <a class="waves-effect waves-light btn" id="Amis">Nos Amis</a>
-                                <a class="waves-effect waves-light btn" id="Tchat">Notre Tchat</a>
-                            </div>
-                        </p>
+            <!-- header -->
+            <li class="collection-header">
+                <h4>Vos Groupes</h4>
+            </li>
+
+            <!-- content -->
+            <li id="grouperow" class="collection-item">
+                <div>
+                    <h4 id="name">${groupe.name}</h4>
+                    <a href="#!" class="secondary-content tooltipped" data-position="top" data-tooltip="Supprimer" id="delete_grp">
+                        <i class="material-icons">delete_forever</i></a>
+                    <!-- Modal trigger -->
+                    <a href="#modal_edit" class="secondary-content tooltipped modal-trigger" data-position="top" data-tooltip="Modifier" id="edit_grp">
+                        <i class="material-icons">edit</i></a>
+                    <!-- Modal Structure -->
+                    <div id="modal_edit" class="modal">
+                        <div class="modal-content">
+                            <h4>Edit group</h4>
+                            <form>
+                                <div class="input-field">
+                                    <input id="groupName" type="text">
+                                    <label for="groupName">Nom du groupe</label>
+                                </div>
+                                <div class="input-field col s12">
+                                    <textarea id="description" class="materialize-textarea"></textarea>
+                                    <label for="description">Description du groupe</label>
+                                </div>
+                                <div class = "center-block">
+                                    <a class="waves-effect waves-light btn modal-close" id="modif_grp_accept">Accept</a>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                </li>
+                    <p>
+                        <div class = "center-block">
+                            <a class="waves-effect waves-light btn" id="Evenements">Nos Evenements</a>
+                            <a class="waves-effect waves-light btn" id="Amis">Nos Amis</a>
+                            <a class="waves-effect waves-light btn" id="Tchat">Notre Tchat</a>
+                        </div>
+                    </p>
+                </div>
+            </li>
         </ul>
     </div>
     <div class="fixed-action-btn">

@@ -31,13 +31,22 @@ function groupeListSetUp(groupDataRequest){
                 $newRow.find("#Tchat").prop("href",`#chat/${index}`)
 
                 $list.append($newRow);
+
+
         })
+        })
+    // activate tooltip
+    const tooltip = document.querySelectorAll('.tooltipped');
+    M.Tooltip.init(tooltip);
 
-        // activate add floating button
-        document.addEventListener('DOMContentLoaded', function() {
-            const elems = document.querySelectorAll('.fixed-action-btn');
-            M.FloatingActionButton.init(elems);
-        });
+    // activate modal
+    const modal = document.querySelectorAll('.modal');
+    M.Modal.init(modal);
 
-    })
+    // activate add floating button
+    document.addEventListener('DOMContentLoaded', function() {
+        const addBtn = document.querySelectorAll('.fixed-action-btn');
+        M.FloatingActionButton.init(addBtn);
+
+    });
 }
