@@ -46,12 +46,22 @@ function groupeListSetUp(switchPage, groupDataRequest){
                 })
 
                 $list.append($newRow);
+
+                // activate tooltip
+                var tooltip = document.querySelectorAll('.tooltipped');
+                M.Tooltip.init(tooltip);
+
+                // activate modal
+                var modal = document.querySelectorAll('.modal');
+                M.Modal.init(modal);
         })
 
-        // activate add floating button
+
         document.addEventListener('DOMContentLoaded', function() {
-            var elems = document.querySelectorAll('.fixed-action-btn');
-            var instances = M.FloatingActionButton.init(elems);
+            // activate add floating button
+            var addBtn = document.querySelectorAll('.fixed-action-btn');
+            M.FloatingActionButton.init(addBtn);
+
         });
 
         // navigate vers la page createGroup on clickant sur le floating btn
