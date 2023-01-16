@@ -32,16 +32,16 @@ function groupeListSetUp(groupDataRequest){
 
                 $list.append($newRow);
 
+            });
+            // activate tooltip
+            const tooltip = document.querySelectorAll('.tooltipped');
+            M.Tooltip.init(tooltip);
 
+            // activate modal
+            const modal = document.querySelectorAll('.modal');
+            M.Modal.init(modal);
         })
-        })
-    // activate tooltip
-    const tooltip = document.querySelectorAll('.tooltipped');
-    M.Tooltip.init(tooltip);
 
-    // activate modal
-    const modal = document.querySelectorAll('.modal');
-    M.Modal.init(modal);
 
     // activate add floating button
     document.addEventListener('DOMContentLoaded', function() {
