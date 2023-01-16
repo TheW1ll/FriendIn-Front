@@ -67,7 +67,8 @@ function groupeListSetUp(switchPage, groupDataRequest){
         // navigate vers la page createGroup on clickant sur le floating btn
         $('.fixed-action-btn').on('touchstart click', function () {
             switchPage(Pages.CreateGroup);
-        })
+        });
+
 
     })
 }
