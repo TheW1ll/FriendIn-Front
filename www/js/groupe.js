@@ -25,12 +25,32 @@ function groupeListSetUp(groupDataRequest){
                 let $newRow = rowModel.clone()
                 const $list = $("#groupelist");
 
+                $newRow.prop("id", `grouperow${index}`)
                 $newRow.find("#name").text(groupe.groupName);
                 $newRow.find("#Evenements").prop("href",`#evenements/${index}`)
                 $newRow.find("#Amis").prop("href",`#membres/${index}`)
                 $newRow.find("#Tchat").prop("href",`#chat/${index}`)
+                $newRow.find("#leave_grp").prop("id",`leave_grp${index}`)
+                $newRow.find("#delete_grp").prop("id",`delete_grp${index}`)
 
                 $list.append($newRow);
+                $(`#leave_grp${index}`).on('touchstart click', function (){
+                    const userId = sessionStorage.getItem("login");
+                    const request = `http://localhost:8080/leaveGroup/${userId}/${index}`;
+                    fetch(request, {method:'DELETE'})
+                        .then((data) => {
+                            return data.json()
+                        })
+                        .then((isSuccessful) =>{
+                            if(isSuccessful){
+                                alert(`Vous venez de quitter ${groupe.groupName}`);
+                                $(`#grouperow${index}`).remove();
+                            }
+                            else{
+                                alert("Vous êtes le créateur de ce groupe et vous ne pouvez donc pas le quitter");
+                            }
+                        })
+                })
 
             });
             // activate tooltip
