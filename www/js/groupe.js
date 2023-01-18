@@ -14,7 +14,7 @@ function groupeListSetUp(groupDataRequest){
     //on charge le modèle de ligne, puis on le supprime de l'html
     const $groupeRow = $("#grouperow");
     const rowModel = $groupeRow.clone();
-
+    const userId = sessionStorage.getItem("login");
     $groupeRow.remove();
 
     groupDataRequest
@@ -22,6 +22,7 @@ function groupeListSetUp(groupDataRequest){
         .then((groups) => {
             groups.forEach((groupe) => {
                 const index = groupe.groupId;
+                const ownerId = groupe.ownerId;
                 let $newRow = rowModel.clone()
                 const $list = $("#groupelist");
 
@@ -30,10 +31,37 @@ function groupeListSetUp(groupDataRequest){
                 $newRow.find("#Evenements").prop("href",`#evenements/${index}`)
                 $newRow.find("#Amis").prop("href",`#membres/${index}`)
                 $newRow.find("#Tchat").prop("href",`#chat/${index}`)
-                $newRow.find("#leave_grp").prop("id",`leave_grp${index}`)
-                $newRow.find("#delete_grp").prop("id",`delete_grp${index}`)
+                if(ownerId === userId){
+                    $newRow.find("#leave_grp").remove();
+                    $newRow.find("#delete_grp").prop("id",`delete_grp${index}`)
+                    $newRow.find("#edit_grp").prop("id",`edit_grp${index}`)
 
+                }
+                else {
+                    $newRow.find("#leave_grp").prop("id",`leave_grp${index}`)
+                    $newRow.find("#delete_grp").remove()
+                    $newRow.find("#edit_grp").remove()
+                }
                 $list.append($newRow);
+                //bouton pour supprimer le groupe
+                $(`#delete_grp${index}`).on('touchstart click', function (){
+                    const password = sessionStorage.getItem("password");
+                    const request = `http://localhost:8080/deleteGroup/${index}/${password}`;
+                    fetch(request, {method:'DELETE'})
+                        .then((data) => {
+                            return data.json()
+                        })
+                        .then((isSuccessful) =>{
+                            if(isSuccessful){
+                                alert(`Vous venez de supprimer ${groupe.groupName}`);
+                                $(`#grouperow${index}`).remove();
+                            }
+                            else{
+                                alert("Le groupe n'a pas pu être supprimé");
+                            }
+                        })
+                })
+                //bouton pour quitter
                 $(`#leave_grp${index}`).on('touchstart click', function (){
                     const userId = sessionStorage.getItem("login");
                     const request = `http://localhost:8080/leaveGroup/${userId}/${index}`;
@@ -51,7 +79,6 @@ function groupeListSetUp(groupDataRequest){
                             }
                         })
                 })
-
             });
             // activate modal
             const modal = document.querySelectorAll('.modal');
