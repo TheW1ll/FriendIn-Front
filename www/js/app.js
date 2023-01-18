@@ -110,20 +110,22 @@ $(document).ready(function() {
         }
     });
 
+    //activate sidenav
+    var mobile_menu = document.querySelectorAll('.sidenav');
+    M.Sidenav.init(mobile_menu);
+
     $('#logout').on('touchstart click', function (){
         sessionStorage.setItem("logged_in","false");
         $(window).trigger("login_change",[false])
-        switchPage(Pages.Login)
+        switchPage(Pages.Login);
     });
     $('#logout_sidenav').on('touchstart click', function (){
         sessionStorage.setItem("logged_in","false");
         $(window).trigger("login_change",[false])
-        switchPage(Pages.Login)
+        switchPage(Pages.Login);
     });
 
-    //activate sidenav
-    var mobile_menu = document.querySelectorAll('.sidenav');
-    M.Sidenav.init(mobile_menu);
+
 
 
 })
