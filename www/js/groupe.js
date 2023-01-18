@@ -33,13 +33,18 @@ function groupeListSetUp(groupDataRequest){
                 $list.append($newRow);
 
             });
-            // activate tooltip
-            const tooltip = document.querySelectorAll('.tooltipped');
-            M.Tooltip.init(tooltip);
 
             // activate modal
             const modal = document.querySelectorAll('.modal');
             M.Modal.init(modal);
+
+            //activate dropdown
+            const dropdown = document.querySelectorAll('.dropdown-trigger');
+            const dropdownOptions = {
+                'closeOnClick': true,
+                'constrainWidth': false
+            }
+            M.Dropdown.init(dropdown, dropdownOptions);
         })
 
 
