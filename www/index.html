@@ -52,12 +52,17 @@
         <nav>
             <div class="nav-wrapper teal" id="navbar">
                 <a href="#" class="brand-logo">OnlyFriendsIn</a>
-                <ul class="right">
-                    <li><a id="logout" class="hide"><i class="material-icons left">exit_to_app</i>Logout</a></li>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a id="logout" class="hide"><i class="material-icons left">logout</i>Logout</a></li>
                     <li><a href="#" id="navgohome"><i class="material-icons left" >home</i>Home</a></li>
                 </ul>
             </div>
         </nav>
+        <ul class="sidenav" id="mobile-demo">
+            <li><a href="#" id="navgohome_sidenav"><i class="material-icons left">home</i>Home</a></li>
+            <li><a href="#" id="logout_sidenav" class="hide"><i class="material-icons left">logout</i>Logout</a></li>
+        </ul>
         <div id="page-content">
             <!-- page-content -->
         </div>
