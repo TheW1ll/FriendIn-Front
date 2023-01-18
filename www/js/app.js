@@ -10,6 +10,7 @@ import {renderGroupeTchatList} from './groupetchat.js'
 import {renderCreateEvenement} from './createevenement.js'
 import {router} from './router.js'
 import {renderInviteMember} from "./invitemember.js";
+import {renderInvitation} from "./invitation.js";
 
 export const Pages = {
     Login: Symbol("login"),
@@ -23,6 +24,7 @@ export const Pages = {
     CreateGroup: Symbol("create group"),
     CreateEvenement: Symbol("create evenement"),
     InviteMember: Symbol("invitemember"),
+    InvitationList: Symbol("invitationlist"),
 }
 
 $(document).ready(function() {
@@ -76,14 +78,15 @@ $(document).ready(function() {
         switchPage(Pages.InviteMember, {groupId:groupId});
     });
 
+    router.addRoute('invitationList',function() {
+        switchPage(Pages.InvitationList);
+    });
+
     //démarrer le router
     router.start()
 
     function switchPage(pageType, options) {
         console.log("on switch vers : " + pageType.toString());
-        if(options !== undefined){
-            console.log("options : " + options.groupId);
-        }
         switch(pageType) {
             case Pages.Login : renderLoginPage($page, switchPage); break;
             case Pages.Inscription : renderInscriptionPage($page); break;
@@ -96,6 +99,7 @@ $(document).ready(function() {
             case Pages.GroupeTchat : renderGroupeTchatList($page, options.groupId); break;
             case Pages.CreateEvenement : renderCreateEvenement($page, options.groupId); break;
             case Pages.InviteMember : renderInviteMember($page, options.groupId); break;
+            case Pages.InvitationList : renderInvitation($page); break;
         }
     }
 

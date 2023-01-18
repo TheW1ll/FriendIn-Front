@@ -53,10 +53,6 @@ function groupeListSetUp(groupDataRequest){
                 })
 
             });
-            // activate tooltip
-            const tooltip = document.querySelectorAll('.tooltipped');
-            M.Tooltip.init(tooltip);
-
             // activate modal
             const modal = document.querySelectorAll('.modal');
             M.Modal.init(modal);
