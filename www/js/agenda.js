@@ -1,22 +1,15 @@
-const Events = [
-    {
-        name: "Restaurant",
-        date: new Date(Date.now()),
-        dateFin : new Date(Date.now() + 3*60*60*1000)
-    },
-    {
-        name: "Cinéma",
-        date: new Date(Date.now() + 24*60*60*1000),
-        dateFin : new Date(Date.now() + 27*60*60*1000)
-    }
-];
 
 export function renderAgendaList($page) {
     $page.empty();
-    $page.load("./views/agenda.html",() => agendaListSetUp());
+
+    const userId = sessionStorage.getItem("login");
+    let requestURL = `http://localhost:8080/getUserEvent/${userId}`;
+    let eventsRequest = fetch(requestURL);
+
+    $page.load("./views/agenda.html",() => agendaListSetUp(eventsRequest));
 }
 
-function agendaListSetUp(){
+function agendaListSetUp(eventsRequest){
     //on met en place les tabs
     const el = document.querySelector('.tabs');
     M.Tabs.init(el, {});
@@ -24,28 +17,47 @@ function agendaListSetUp(){
     const $eventRow = $("#eventrow");
     const rowModel = $eventRow.clone();
     $eventRow.remove();
-    //on charge les évènements : pour l'instant des faux
-    Events.forEach((event) => {
-        const $newRow = rowModel.clone()
-        const $list = $("#eventlist");
 
-        $newRow.find("#nameEventAgenda").text(event.name);
-        $newRow.find("#dateEventAgenda").text(event.date.toDateString());
-        $list.append($newRow);
-    })
-
+    //calendrier
     const calendarEl = document.getElementById('calendar');
     const calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
+        firstDay: 1,
         contentHeight: 600,
-        events: Events.map((event) => {
-            event = {
-                "title": event.name,
-                "start": event.date,
-                "end": event.dateFin
-            };
-            return event;
-        })
+        locale: 'fr',
+        eventTimeFormat: {
+            hour: '2-digit',
+            minute: '2-digit',
+            meridiem: false
+        },
+        buttonText: {
+            today: "Aujourd'hui"
+        }
     });
+
+    //on charge les évènements
+    eventsRequest
+        .then((response) => response.json())
+        .then((events) => {
+            events.forEach((event) => {
+                const $newRow = rowModel.clone()
+                const $list = $("#eventlist");
+                const dateDebut = new Date(event.dateDebut);
+                const dateFin = new Date(event.dateFin);
+
+                $newRow.find("#nameEventAgenda").text(event.eventName);
+                $newRow.find("#dateEventAgenda").text(`${dateDebut.toLocaleDateString()} : ${dateDebut.toLocaleTimeString()}`);
+                $list.append($newRow);
+                calendar.addEvent({
+                    title: event.eventName,
+                    start: dateDebut,
+                    end: dateFin,
+                })
+            });
+
+        })
+
+
+
     calendar.render();
 }
