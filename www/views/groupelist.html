@@ -11,6 +11,17 @@
             <li id="grouperow" class="collection-item">
                 <div>
                     <h4 id="name">${groupe.name}</h4>
+                    <!-- Dropdown Trigger -->
+                    <a href='#' class='secondary-content dropdown-trigger' data-target='dropdown1'>
+                        <i class="material-icons">more_vert</i>
+                    </a>
+                    <!-- Dropdown Structure -->
+                    <ul id='dropdown1' class='dropdown-content'>
+                        <li><a href="#modal_edit" class="modal-trigger"><i class="material-icons left">edit</i>Modifier le group</a></li>
+                        <li><a href="#!"><i class="material-icons left">exit_to_app</i>Quitter du group</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#!"><i class="material-icons left">delete_forever</i>Supprimer le group</a></li>
+                    </ul>
                     <a class="secondary-content waves-effect waves-light" data-position="top" data-tooltip="Supprimer" id="delete_grp">
                         <i class="material-icons">delete_forever</i></a>
                     <a class="secondary-content waves-effect waves-light" data-position="top" data-tooltip="Quitter le groupe" id="leave_grp">
@@ -19,7 +30,7 @@
                     <a href="#modal_edit" class="secondary-content modal-trigger waves-effect waves-light hide" data-position="top" data-tooltip="Modifier" id="edit_grp">
                         <i class="material-icons">edit</i></a>
                     <!-- Modal Structure -->
-                    <div id="modal_edit" class="modal">
+                    <div id="modal_edit" class="modal col s10">
                         <div class="modal-content">
                             <h4>Edit group</h4>
                             <form>
@@ -47,10 +58,11 @@
                 </div>
             </li>
         </ul>
+        <div class="fixed-action-btn">
+            <a href="#creerGroupe" class="btn-floating btn-large red">
+                <i class="large material-icons">add</i>
+            </a>
+        </div>
     </div>
-    <div class="fixed-action-btn">
-        <a href="#creerGroupe" class="btn-floating btn-large red">
-            <i class="large material-icons">add</i>
-        </a>
-    </div>
+
 </section>

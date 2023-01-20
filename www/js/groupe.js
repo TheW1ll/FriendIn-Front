@@ -80,9 +80,18 @@ function groupeListSetUp(groupDataRequest){
                         })
                 })
             });
+
             // activate modal
             const modal = document.querySelectorAll('.modal');
             M.Modal.init(modal);
+
+            //activate dropdown
+            const dropdown = document.querySelectorAll('.dropdown-trigger');
+            const dropdownOptions = {
+                'closeOnClick': true,
+                'constrainWidth': false
+            }
+            M.Dropdown.init(dropdown, dropdownOptions);
         })
 
 
