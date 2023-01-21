@@ -1,32 +1,46 @@
-<section class="margin card-panel center-align">
-    <h1>Créer événement</h1>
-    <form>
-        <div class="input-field">
-            <input id="evenementName" type="text">
-            <label for="evenementName">Titre d'événement</label>
+<section>
+    <div class="row">
+        <div class="col m6 hide-on-med-and-down">
+            <p></p>
+            <p></p>
+            <img src='../img/creer_evnt.jpg' alt="" class="responsive-img ">
         </div>
-        <div class="input-field">
-            <input type="text" class="datepicker" id="datePicker">
-            <label for="datePicker">Jour</label>
+        <div class="col s12 offset-m1 m5">
+            <p class="hide-on-large-only"></p>
+            <h4 class="center-align">Créer événement</h4>
+            <p></p>
+            <div class="divider hide-on-large-only"></div>
+            <p class="hide-on-large-only"></p>
+            <form>
+                <div class="input-field">
+                    <input id="evenementName" type="text">
+                    <label for="evenementName">Titre d'événement</label>
+                </div>
+                <div class="input-field">
+                    <input type="text" class="datepicker" id="datePicker">
+                    <label for="datePicker">Jour</label>
+                </div>
+                <div class="input-field">
+                    <input type="text" class="timepicker" id="timePicker">
+                    <label for="datePicker">Heure</label>
+                </div>
+                <div class="input-field">
+                    <input type="text" id="duree">
+                    <label for="duree">Durée en heures</label>
+                </div>
+                <div class="input-field">
+                    <input id="adresse" type="text">
+                    <label for="adresse">Adresse de l'événement</label>
+                </div>
+                <div class="input-field">
+                    <textarea id="description" class="materialize-textarea"></textarea>
+                    <label for="description">Description</label>
+                </div>
+                <p></p>
+                <div class="center-align">
+                    <a class="waves-effect waves-light btn" id="create">Créer</a>
+                </div>
+            </form>
         </div>
-        <div class="input-field">
-            <input type="text" class="timepicker" id="timePicker">
-            <label for="datePicker">Heure</label>
-        </div>
-        <div class="input-field">
-            <input type="text" id="duree">
-            <label for="duree">Durée en heures</label>
-        </div>
-        <div class="input-field">
-            <input id="adresse" type="text">
-            <label for="adresse">Adresse de l'événement</label>
-        </div>
-        <div class="input-field col s12">
-            <textarea id="description" class="materialize-textarea"></textarea>
-            <label for="description">Description</label>
-        </div>
-        <div class = "center-block">
-            <a class="waves-effect waves-light btn" id="create">Créer</a>
-        </div>
-    </form>
+    </div>
 </section>
