@@ -65,6 +65,7 @@ body {
         margin-left: 35px;
         margin-right: 35px;
     }
+
 }
 
 h1 {
@@ -113,6 +114,7 @@ h1 {
     body {
         background-image:linear-gradient(to bottom, #585858 0%, #1B1B1B 51%);
     }
+
 }
 
 .align-children-row {
