@@ -106,10 +106,12 @@ $(document).ready(function() {
     $(window).on("login_change", (event, is_login) => {
         if(is_login){
             $('#logout').removeClass('hide');
+            $('#sidenav_trigger').removeClass('hide');
             $('#logout_sidenav').removeClass('hide');
         }
         else {
             $('#logout').addClass('hide');
+            $('#sidenav_trigger').addClass('hide');
             $('#logout_sidenav').addClass('hide');
         }
     });
