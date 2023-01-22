@@ -61,10 +61,6 @@ body {
         margin:-90px 0px 0px -198px;  /* offset vertical: half of image height */
                                       /* offset horizontal: half of image width and text area width */
     }
-    #page-content {
-        margin-left: 35px;
-        margin-right: 35px;
-    }
 
 }
 
